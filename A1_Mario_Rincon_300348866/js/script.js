@@ -2,11 +2,10 @@
 Mario Rincon Dondi - 300348866
 *****************************************/
 
-/*** 
- * `quotes` array 
-***/
+//create empty quotes array
 var quotes = new Array();
 
+//create quote obejcts
 const quote1 = {
     quote: "Success is only meaningful and enjoyable if it feels like your own",
     source: "Michelle Obama",
@@ -34,37 +33,42 @@ const quote5 = {
     source: "Will Arnett"
 }
 
+//insert quote objects to quotes array
 quotes = [quote1, quote2, quote3, quote4, quote5]
 
 
-/***
- * `getRandomQuote` function
-***/
-
+//function to get quote based on randomnumber 
 function getRandomQuote(){
 	let randomNumber = Math.floor(Math.random()*quotes.length);
 	return quotes[randomNumber];
 }
 
 
-/***
- * `printQuote` function
-***/
+//function to call getRandomQuote and print quote
 function printQuote(){
 let randomQuote = getRandomQuote();
 
+//create html string
 let PtoHTML1 = "<p class='quote'>" + randomQuote.quote + "</p><p class='source'>" +
-randomQuote.source + "</p>"
+randomQuote.source
+
+//verify if quote has citation and year properties
+if(randomQuote.citation != undefined){
+	PtoHTML1 += "<span class='citation'>" + randomQuote.citation + "</span>"
+} 
+
+if(randomQuote.year != undefined){
+	PtoHTML1 += "<span class='year'>" + randomQuote.year + "</span>"
+} 
+
+PtoHTML1 += "</p>"
 
 document.getElementById('quote-box').innerHTML = PtoHTML1;
 
 }
 
 
-/***
- * click event listener for the print quote button
- * The code will look like the following. You need to complete it.
-
-***/
-
+// create event listener for the print quote button
 document.getElementById('load-quote').addEventListener("click", printQuote);
+
+
